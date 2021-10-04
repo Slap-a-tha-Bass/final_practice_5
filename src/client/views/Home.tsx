@@ -3,8 +3,11 @@ import { Categories } from '../../../types';
 import RootLayout from '../components/RootLayout';
 import { apiService } from '../utils/api-service';
 import {useForm} from '../hooks/useForm';
+import { useHistory } from 'react-router';
 
 const Home = () => {
+    const history = useHistory();
+
     const { values, handleChanges } = useForm();
 
     const [categories, setCategories] = useState<Categories[]>([]);
@@ -13,7 +16,13 @@ const Home = () => {
         apiService('/api/categories')
             .then(data => setCategories(data))
     }, [])
-
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        apiService('/api/books', 'POST', { title: values.title, author: values.author, price: values.price, categoryid: values.categoryid})
+            .then(data => {
+                history.push('/books')
+            })
+    }
     return (
         <RootLayout>
             <h1 className="text-primary text-left">home</h1>
