@@ -4,6 +4,7 @@ import RootLayout from '../components/RootLayout';
 import { apiService } from '../utils/api-service';
 import {useForm} from '../hooks/useForm';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const history = useHistory();
@@ -30,21 +31,21 @@ const Home = () => {
                 <label htmlFor="">Title</label>
                 <input
                 name="title"
-                value={values.title}
+                value={values.title || ''}
                 onChange={handleChanges} 
                 type="text" 
                 className="form-control" />
                 <label htmlFor="">Author</label>
                 <input 
                 name="author"
-                value={values.author}
+                value={values.author || ''}
                 onChange={handleChanges}
                 type="text" 
                 className="form-control" />
                 <label htmlFor="">Price</label>
                 <input 
                 name="price"
-                value={values.price}
+                value={values.price || ''}
                 onChange={handleChanges}
                 type="number" 
                 step=".01"
@@ -61,7 +62,9 @@ const Home = () => {
                         </option>
                     ))}
                 </select>
-                <button className="btn btn-primary">Submit</button>
+                <button onClick={handleSubmit} className="btn btn-primary mx-2">Submit</button>
+                <Link to="/profile" className="btn btn-primary mx-2">Profile</Link>
+
             </form>
         </RootLayout>
     )

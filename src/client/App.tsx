@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import PrivateRoute from './components/PrivateRoute';
 import BookDetails from './views/BookDetails';
 import Books from './views/Books';
 import EditDetails from './views/EditDetails';
@@ -12,6 +14,7 @@ const App = (props: AppProps) => {
 	
 	return (
 		<BrowserRouter>
+			<Navbar />
 			<Switch>
 				<Route exact path='/'>
 					<Home />
@@ -31,9 +34,9 @@ const App = (props: AppProps) => {
 				<Route exact path='/register'>
 					<Register />
 				</Route>
-				<Route exact path='/profile'>
+				<PrivateRoute exact path='/profile'>
 					<Profile />
-				</Route>
+				</PrivateRoute>
 			</Switch>
 		</BrowserRouter>	
 	);

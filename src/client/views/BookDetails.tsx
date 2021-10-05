@@ -15,7 +15,7 @@ const BookDetails = () => {
     }, [])
     return (
         <RootLayout>
-            <BookCard {...books} key={id} />
+            <BookCard {...books} key={id} isPreview />
         </RootLayout>
     )
 }

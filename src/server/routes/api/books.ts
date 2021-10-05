@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
         res.status(500).json({ message: "Error posting books", error: error.sqlMessage})
     }
 });
-router.put('/:id', async (req, res) => {
+router.put('/:id/edit', async (req, res) => {
     const { id } = req.params;
     const { title, author, price, categoryid } = req.body;
     const editBook: Books = { title, author, price, categoryid };
@@ -43,7 +43,7 @@ router.put('/:id', async (req, res) => {
         res.status(500).json({ message: "Error editing books", error: error.sqlMessage})
     }
 });
-router.delete('/:id', async (req, res) => {
+router.delete('/:id/delete', async (req, res) => {
     const { id } = req.params;
     try {
         await delete_book(Number(id));
