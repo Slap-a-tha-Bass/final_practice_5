@@ -5,7 +5,7 @@ const RootLayout = ({ children }: IRootLayout) => {
         <main className="container">
             <section className="row justify-content-center">
                 <div className="col-md-6">
-                    {children}
+                    {children}    
                 </div>
             </section>
         </main>

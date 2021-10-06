@@ -17,13 +17,22 @@ const Home = () => {
         apiService('/api/categories')
             .then(data => setCategories(data))
     }, [])
+    let disabledButton = true;
+    if(values.title && values.author && values.price && values.categoryid){
+        disabledButton = false;
+    }
     const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
+        if(!values.title || !values.author || !values.price || !values.categoryid){
+            alert('Please fill out all required fields!');
+            return;
+        }
         apiService('/api/books', 'POST', { title: values.title, author: values.author, price: values.price, categoryid: values.categoryid})
             .then(data => {
                 history.push('/books')
             })
     }
+    
     return (
         <RootLayout>
             <h1 className="text-primary text-left">home</h1>
@@ -62,9 +71,8 @@ const Home = () => {
                         </option>
                     ))}
                 </select>
-                <button onClick={handleSubmit} className="btn btn-primary mx-2">Submit</button>
+                <button onClick={handleSubmit} className="btn btn-primary mx-2" disabled={disabledButton} >Submit</button>
                 <Link to="/profile" className="btn btn-primary mx-2">Profile</Link>
-
             </form>
         </RootLayout>
     )

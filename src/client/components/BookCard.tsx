@@ -16,7 +16,7 @@ const BookCard = ({ id, title, author, price, isPreview, categoryid }: Books ) =
     }
     return (
         <RootLayout>
-            <div className="card">
+            <div className="card border shadow m-3">
                 <h1 className="card-header">{title}</h1>
                 <div className="card-body">
                     <h3 className="card-text">{author}</h3>

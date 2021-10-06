@@ -1,8 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import RootLayout from './RootLayout';
 
 const Navbar = () => {
+    const history = useHistory();
+
     return (
         <RootLayout>
             <div className="d-flex justify-content-center">
